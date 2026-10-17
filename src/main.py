@@ -3,6 +3,8 @@
 from data import INITIAL_ITEMS
 from services import (
     add_item,
+    delete_by_id,
+    find_by_id,
     display_items,
     filter_by_category,
     filter_by_min_quantity,
@@ -20,7 +22,9 @@ def print_menu():
     print("=" * 36)
     print("1. Pokaż zawartość spiżarni")
     print("2. Dodaj nowy produkt")
-    print("3. Filtruj produkty")
+    print("3. Usuń produkt")
+    print("4. Znajdź po ID")
+    print("5. Filtruj produkty")
     print("0. Wyjście")
     print("-" * 36)
 
@@ -37,6 +41,19 @@ def add_new_item():
         items, {"name": name, "category": category, "quantity": quantity}
     )
     print(f"Dodano produkt o ID {new_item['id']}: {name}.")
+
+
+def delete_item():
+    item_id = get_int_input(f"ID produktu (1-{len(items)}): ", 1, len(items))
+    delete_by_id(items, item_id)
+    print(f"Usunięto produkt o ID {item_id}")
+
+
+def find_item():
+    item_id = get_int_input("ID produktu: ", 1, len(items))
+    result = [find_by_id(items, item_id)]
+
+    display_items(result)
 
 
 def filter_items():
@@ -63,6 +80,10 @@ def handle_choice(choice):
         case 2:
             add_new_item()
         case 3:
+            delete_item()
+        case 4:
+            find_item()
+        case 5:
             filter_items()
         case 0:
             print("Do widzenia!")
@@ -74,7 +95,7 @@ def main():
     running = True
     while running:
         print_menu()
-        choice = get_int_input("Wybierz opcję (0-3): ", 0, 3)
+        choice = get_int_input("Wybierz opcję (0-5): ", 0, 5)
         running = handle_choice(choice)
 
 
