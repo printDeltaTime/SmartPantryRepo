@@ -1,8 +1,15 @@
 """Smart Pantry - prosty program CLI do zarządzania domową spiżarnią."""
 
+from data import INITIAL_ITEMS
+from services import (
+    add_item,
+    display_items,
+    filter_by_category,
+    filter_by_min_quantity,
+)
 from validators import get_int_input, get_non_empty_string
 
-pantry = {}  # słownik: nazwa produktu -> ilość sztuk
+items = list(INITIAL_ITEMS)  # kopia, żeby nie zmieniać danych początkowych
 
 
 def print_menu():
@@ -11,54 +18,52 @@ def print_menu():
     print("=" * 36)
     print("       SMART PANTRY - MENU GŁÓWNE")
     print("=" * 36)
-    print("1. Dodaj produkt")
-    print("2. Pokaż zawartość spiżarni")
-    print("3. Zużyj produkt")
+    print("1. Pokaż zawartość spiżarni")
+    print("2. Dodaj nowy produkt")
+    print("3. Filtruj produkty")
     print("0. Wyjście")
     print("-" * 36)
 
 
-def add_product():
+def show_items():
+    display_items(items)
+
+
+def add_new_item():
     name = get_non_empty_string("Nazwa produktu: ").lower()
+    category = get_non_empty_string("Kategoria: ").lower()
     quantity = get_int_input("Ilość sztuk (1-1000): ", 1, 1000)
-    pantry[name] = pantry.get(name, 0) + quantity
-    print(f"Dodano: {name} x{quantity} (razem: {pantry[name]}).")
+    new_item = add_item(
+        items, {"name": name, "category": category, "quantity": quantity}
+    )
+    print(f"Dodano produkt o ID {new_item['id']}: {name}.")
 
 
-def show_pantry():
-    if not pantry:
-        print("Spiżarnia jest pusta.")
-        return
-    for i, (name, quantity) in enumerate(pantry.items(), start=1):
-        print(f"{i}. {name} - {quantity} szt.")
+def filter_items():
+    print("1. Po kategorii")
+    print("2. Po minimalnej ilości")
+    choice = get_int_input("Wybierz filtr (1-2): ", 1, 2)
 
+    match choice:
+        case 1:
+            category = get_non_empty_string("Podaj kategorię: ")
+            result = filter_by_category(items, category)
+        case 2:
+            min_quantity = get_int_input("Minimalna ilość (1-1000): ", 1, 1000)
+            result = filter_by_min_quantity(items, min_quantity)
 
-def use_product():
-    if not pantry:
-        print("Spiżarnia jest pusta, nie ma czego zużyć.")
-        return
-    name = get_non_empty_string("Nazwa produktu do zużycia: ").lower()
-    if name not in pantry:
-        print(f"Nie ma produktu '{name}' w spiżarni.")
-        return
-    quantity = get_int_input(f"Ile sztuk zużyć (1-{pantry[name]}): ", 1, pantry[name])
-    pantry[name] -= quantity
-    if pantry[name] == 0:
-        del pantry[name]
-        print(f"Zużyto wszystko: {name} (usunięto z listy).")
-    else:
-        print(f"Zużyto {quantity} szt. Zostało: {pantry[name]}.")
+    display_items(result)
 
 
 def handle_choice(choice):
     """Obsługuje wybór z menu. Zwraca False, gdy program ma się zakończyć."""
     match choice:
         case 1:
-            add_product()
+            show_items()
         case 2:
-            show_pantry()
+            add_new_item()
         case 3:
-            use_product()
+            filter_items()
         case 0:
             print("Do widzenia!")
             return False
