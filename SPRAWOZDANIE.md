@@ -103,6 +103,6 @@ Po każdym błędzie program zgłasza komunikat i ponownie zadaje to samo pytani
   * Zaimplementowane funkcjonalności: funkcjonalności: obsługa menu konsolowego, dodawanie produktów, wyświetlanie listy oraz filtrowanie produktów, funkcjonalności: przygotowanie danych początkowych oraz walidacja danych wprowadzanych przez użytkownika.
   * Liczba wykonanych commitów: 5
 * **[Łukasz Sojka]:**
-  * Odpowiedzialność za moduły: src/main.py
-  * Zaimplementowane funkcjonalności: funkcjonalności: przygotowanie danych początkowych oraz walidacja danych wprowadzanych przez użytkownika.
+  * Odpowiedzialność za moduły: Dodanie modułów
+  * Zaimplementowane funkcjonalności: funkcjonalności: przygotowanie danych początkowych 
   * Liczba wykonanych commitów: 1
