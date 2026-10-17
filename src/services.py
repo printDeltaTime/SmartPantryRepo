@@ -7,16 +7,17 @@ def display_items(items_list):
         print("Spiżarnia jest pusta.")
         return
 
-    line = "-" * 44
+    line = "-" * 69
     print(line)
-    print(f"{'ID':<5}{'Nazwa':<18}{'Kategoria':<14}{'Ilość':>7}")
+    print(f"{'ID':<5}{'Nazwa':<18}{'Kategoria':<14}{'Ilość':>7}{'Data przydatności':>25}")
     print(line)
     for item in items_list:
         print(
             f"{item['id']:<5}"
             f"{item['name']:<18}"
-            f"{item['category']:<14}"
-            f"{item['quantity']:>7}"
+            f"{item['category']:<17}"
+            f"{item['quantity']:<7}"
+            f"{item['expiration_date']:>22}"
         )
     print(line)
 
@@ -65,3 +66,20 @@ def filter_by_min_quantity(items_list, min_quantity):
 #         if q in item["name"].casefold() and item["price"] <= max_price:
 #             results.append(item)
 #     return results
+
+# def calculate_stats(catalog: list[dict]) -> dict:
+#     """Kalkuluje metryki analityczne oferty."""
+#     if not catalog:
+#         return{"count": 0, "total": 0.0, "avg": 0.0, "min": 0.0, "max": 0.0}
+    
+#     # Krok 1: Wyciągamy same ceny do prostej listy liczb
+#     prices = [item["price"] for item in catalog]
+
+#     # Krok 2: Używamy wbudowanych funkcji matematycznych Pythona
+#     return {
+#         "count": len(catalog),
+#         "total": sum(prices),
+#         "avg": sum(prices) / len(prices),
+#         "min_price": min(prices),
+#         "max_price": max(prices),
+#     }
