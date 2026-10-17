@@ -3,7 +3,7 @@
 **Projekt:** Smart Pantry  
 **Zespół (Autorzy):**  
 1. [Paweł Szwarocki] (nr albumu: 164883) – login Git: PawelSzwarocki
-2. [Łukasz Sójka] (nr albumu: 164880) – login Git: printDeltaTime 
+2. [Łukasz Sojka] (nr albumu: 164880) – login Git: printDeltaTime 
 **Data oddania:** [17.10.2026r.]  
 
 ---
@@ -100,9 +100,9 @@ Po każdym błędzie program zgłasza komunikat i ponownie zadaje to samo pytani
 ## 5. Podział Pracy w Zespole
 * **[Paweł Szwarocki]:**
   * Odpowiedzialność za moduły: src/data.py, src/validators.py, src/services.py, src/main.py
-  * Zaimplementowane funkcjonalności: funkcjonalności: obsługa menu konsolowego, dodawanie produktów, wyświetlanie listy oraz filtrowanie produktów.
+  * Zaimplementowane funkcjonalności: funkcjonalności: obsługa menu konsolowego, dodawanie produktów, wyświetlanie listy oraz filtrowanie produktów, funkcjonalności: przygotowanie danych początkowych oraz walidacja danych wprowadzanych przez użytkownika.
   * Liczba wykonanych commitów: 5
-* **[Łukasz Sójka]:**
+* **[Łukasz Sojka]:**
   * Odpowiedzialność za moduły: src/main.py
   * Zaimplementowane funkcjonalności: funkcjonalności: przygotowanie danych początkowych oraz walidacja danych wprowadzanych przez użytkownika.
-  * Liczba wykonanych commitów: 2
+  * Liczba wykonanych commitów: 1
